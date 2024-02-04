@@ -4,8 +4,15 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+// const errorHandlerMiddleware = require('./middleware/error-handler');
+
+
+const router = express.Router();
 
 const app = express();
+
+app.use('/public', express.static('public'));
+
 
 // Passport Config
 require('./config/passport')(passport);
@@ -56,6 +63,7 @@ app.use(function(req, res, next) {
 // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
+// app.use("/dashboard/", require("./routes/taskroute"));
 
 const PORT = process.env.PORT || 5000;
 
